@@ -1,0 +1,9 @@
+.folder-list {
+  padding: 0px;
+}
+
+.add-folder-button {
+  width: 100%;
+  height: 3rem;
+  font-size: 20px;
+}

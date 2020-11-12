@@ -1,0 +1,12 @@
+.note-item {
+  list-style: none;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 7px;
+  margin: 5px 0px 5px 0px;
+}
+
+.note-title > a {
+  text-decoration: none;
+  color: black;
+}
