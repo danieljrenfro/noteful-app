@@ -1,6 +1,6 @@
 import React from 'react';
-import Folder from './Folder';
-import NotefulContext from './NotefulContext';
+import Folder from '../Folder/Folder';
+import NotefulContext from '../NotefulContext';
 import './FolderList.css';
 
 class FolderList extends React.Component {

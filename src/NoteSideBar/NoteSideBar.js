@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NotefulContext from './NotefulContext';
-import history from './history';
+import NotefulContext from '../NotefulContext';
+import history from '../history';
 import './NoteSideBar.css';
 
 class NoteSideBar extends React.Component {

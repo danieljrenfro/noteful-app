@@ -1,14 +1,14 @@
 import React from 'react';
 
 import store from './store';
-import Header from './Header';
-import NoteList from './NoteList';
-import FolderList from './FolderList';
-import SideBar from './SideBar';
-import Main from './Main';
-import FilteredNoteList from './FilteredNoteList';
-import NoteSideBar from './NoteSideBar';
-import OpenNote from './OpenNote';
+import Header from './Header/Header';
+import NoteList from './NoteList/NoteList';
+import FolderList from './FolderList/FolderList';
+import SideBar from './SideBar/SideBar';
+import Main from './Main/Main';
+import FilteredNoteList from './FilteredNoteList/FilteredNoteList';
+import NoteSideBar from './NoteSideBar/NoteSideBar';
+import OpenNote from './OpenNote/OpenNote';
 import NotefulContext from './NotefulContext';
 
 import { Route, Switch }  from 'react-router-dom';

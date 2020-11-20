@@ -1,7 +1,7 @@
 import React from 'react';
-import Note from './Note';
-import NotefulContext from './NotefulContext';
-import './NoteList.css'
+import Note from '../Note/Note';
+import NotefulContext from '../NotefulContext';
+import '../NoteList/NoteList.css'
 
 class FilteredNoteList extends React.Component {
 
