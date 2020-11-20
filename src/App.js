@@ -9,6 +9,7 @@ import Main from './Main';
 import FilteredNoteList from './FilteredNoteList';
 import NoteSideBar from './NoteSideBar';
 import OpenNote from './OpenNote';
+import NotefulContext from './NotefulContext';
 
 import { Route, Switch }  from 'react-router-dom';
 
@@ -31,10 +32,14 @@ class App extends React.Component {
   }
 
   render() {
+    const contextValue = {
+      folders: this.state.folders,
+      notes: this.state.notes,
+    }
     return (
-      <>
+      <NotefulContext.Provider value={contextValue}>
         {/* Header Route */}
-        <Route path='/' component={Header} />
+        <Route path='/' component={Header}/>
         <main>
           {/* SideBar Routes */}
           <SideBar>
@@ -42,19 +47,11 @@ class App extends React.Component {
               <Route
                 exact
                 path='/note/:noteId'
-                render={({match, history}) => 
-                <NoteSideBar 
-                  match={match} 
-                  notes={this.state.notes} 
-                  folders={this.state.folders}
-                  onClickGoBack={() => history.goBack()}
-                />}
+                component={NoteSideBar}
               /> 
               <Route 
                 path='/'
-                render={() => 
-                <FolderList 
-                  folders={this.state.folders} />}
+                component={FolderList}
               /> 
             </Switch>
           </SideBar>
@@ -63,24 +60,21 @@ class App extends React.Component {
             <Route 
               exact
               path='/'
-              render={() => 
-              <NoteList notes={this.state.notes} />}
+              component={NoteList}
             />
             <Route
               exact
               path='/folder/:folderId'
-              render={(routerProps) => 
-              <FilteredNoteList {...routerProps} notes={this.state.notes}/>}
+              component={FilteredNoteList}
             />
             <Route
               exact
               path='/note/:noteId'
-              render={(routerProps) => 
-              <OpenNote {...routerProps} notes={this.state.notes}/>}
+              component={OpenNote}
             />
           </Main>
         </main>
-      </> 
+      </NotefulContext.Provider> 
     )
   }
 }
