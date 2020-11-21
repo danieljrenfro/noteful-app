@@ -9,6 +9,7 @@ import FilteredNoteList from './FilteredNoteList/FilteredNoteList';
 import NoteSideBar from './NoteSideBar/NoteSideBar';
 import OpenNote from './OpenNote/OpenNote';
 import NotefulContext from './NotefulContext';
+import history from './history';
 
 import { Route, Switch }  from 'react-router-dom';
 
@@ -64,6 +65,7 @@ class App extends React.Component {
     this.setState({
       notes: newNotes,
     })
+    history.push('/')
   }
 
   componentDidMount() {
