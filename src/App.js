@@ -1,6 +1,5 @@
 import React from 'react';
 
-import store from './store';
 import Header from './Header/Header';
 import NoteList from './NoteList/NoteList';
 import FolderList from './FolderList/FolderList';
@@ -15,26 +14,68 @@ import { Route, Switch }  from 'react-router-dom';
 
 import './App.css';
 
-const { folders, notes } = store;
-
 class App extends React.Component {
   state = {
     folders: [],
-    notes: []
+    notes: [],
+    error: null,
   };
 
-  componentDidMount() {
+  setFolders = (folders) => {
     this.setState({
-      folders: folders,
-      notes: notes
-    } 
-    )
+      folders,
+      error: null,
+    })
+  }
+
+  getFolders = ()  => {
+    fetch('http://localhost:9090/folders')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(this.setFolders)
+      .catch(error => this.setState({ error }))
+  }
+
+  setNotes = (notes) => {
+    this.setState({
+      notes,
+      error: null,
+    })
+  }
+
+  getNotes = () => {
+    fetch('http://localhost:9090/notes')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status)
+        }
+        return res.json();
+      })
+      .then(this.setNotes)
+      .catch(error => this.setState({ error }))
+  }
+
+  deleteNote = (noteId) => {
+    const newNotes = this.state.notes.filter(note => note.id !== noteId);
+    this.setState({
+      notes: newNotes,
+    })
+  }
+
+  componentDidMount() {
+    this.getFolders();
+    this.getNotes();
   }
 
   render() {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
+      deleteNote: this.deleteNote,
     }
     return (
       <NotefulContext.Provider value={contextValue}>
