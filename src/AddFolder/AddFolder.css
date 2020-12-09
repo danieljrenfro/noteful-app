@@ -1,0 +1,15 @@
+input {
+  display: block;
+  height: 40px;
+  font-size: 20px;
+  margin: 5px 0px 10px 0px;
+}
+
+.add-folder-form > label {
+  font-size: 30px;
+  display: none;
+}
+
+button {
+  margin-right: 5px;
+}

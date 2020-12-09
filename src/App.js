@@ -1,15 +1,17 @@
 import React from 'react';
+import history from './history';
+import NotefulContext from './NotefulContext';
 
 import Header from './Header/Header';
-import NoteList from './NoteList/NoteList';
-import FolderList from './FolderList/FolderList';
-import SideBar from './SideBar/SideBar';
 import Main from './Main/Main';
+import NoteList from './NoteList/NoteList';
 import FilteredNoteList from './FilteredNoteList/FilteredNoteList';
-import NoteSideBar from './NoteSideBar/NoteSideBar';
 import OpenNote from './OpenNote/OpenNote';
-import NotefulContext from './NotefulContext';
-import history from './history';
+import SideBar from './SideBar/SideBar';
+import FolderList from './FolderList/FolderList';
+import NoteSideBar from './NoteSideBar/NoteSideBar';
+import SidebarError from './ErrorBoundaries/SidebarError';
+import MainError from './ErrorBoundaries/MainError';
 
 import { Route, Switch }  from 'react-router-dom';
 
@@ -65,7 +67,18 @@ class App extends React.Component {
     this.setState({
       notes: newNotes,
     })
-    history.push('/')
+  }
+
+  createFolder = (folder) => {
+    this.setState({
+      folders: [...this.state.folders, folder]
+    })
+  }
+
+  createNote = (note) => {
+    this.setState({
+      notes: [...this.state.notes, note]
+    })
   }
 
   componentDidMount() {
@@ -78,6 +91,8 @@ class App extends React.Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.deleteNote,
+      createFolder: this.createFolder,
+      createNote: this.createNote
     }
     return (
       <NotefulContext.Provider value={contextValue}>
@@ -85,37 +100,42 @@ class App extends React.Component {
         <Route path='/' component={Header}/>
         <main>
           {/* SideBar Routes */}
-          <SideBar>
-            <Switch>
-              <Route
-                exact
-                path='/note/:noteId'
-                component={NoteSideBar}
-              /> 
-              <Route 
-                path='/'
-                component={FolderList}
-              /> 
-            </Switch>
-          </SideBar>
+          <SidebarError>
+            <SideBar>
+              <Switch>
+                <Route
+                  exact
+                  path='/note/:noteId'
+                  component={NoteSideBar}
+                /> 
+                <Route 
+                  path='/'
+                  component={FolderList}
+                /> 
+              </Switch>
+            </SideBar>
+          </SidebarError>  
           {/* Main Section Routes */}
-          <Main>
-            <Route 
-              exact
-              path='/'
-              component={NoteList}
-            />
-            <Route
-              exact
-              path='/folder/:folderId'
-              component={FilteredNoteList}
-            />
-            <Route
-              exact
-              path='/note/:noteId'
-              component={OpenNote}
-            />
-          </Main>
+          <MainError>
+            <Main>
+              <Switch>
+                <Route
+                  exact
+                  path='/folder/:folderId'
+                  component={FilteredNoteList}
+                />
+                <Route
+                  exact
+                  path='/note/:noteId'
+                  component={OpenNote}
+                />
+                <Route 
+                  path='/'
+                  component={NoteList}
+                />
+              </Switch>
+            </Main>
+          </MainError>  
         </main>
       </NotefulContext.Provider> 
     )

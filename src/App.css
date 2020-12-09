@@ -1,3 +1,9 @@
 main {
   display: flex;
 }
+
+@media all and (max-width: 600px) {
+  main {
+    flex-direction: column;
+  }
+}

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
-import React from 'react';
+import PropTypes from 'prop-types';
+
+import React, { Component } from 'react';
 import './Note.css';
 import NotefulContext from '../NotefulContext';
 
@@ -22,7 +24,7 @@ function deleteNote(noteId, cb) {
   .catch(error => console.log(error))
 }
 
-class Note extends React.Component {
+class Note extends Component {
   static contextType = NotefulContext;
   
   render() {
@@ -39,6 +41,19 @@ class Note extends React.Component {
       </li>
     )
   }
+}
+
+Note.propTypes = {
+  note: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    modified: PropTypes.string,
+    folderId: PropTypes.string,
+    content: PropTypes.string
+  }),
+  context: PropTypes.shape({
+    deleteNote: PropTypes.func,
+  })
 }
 
 export default Note;

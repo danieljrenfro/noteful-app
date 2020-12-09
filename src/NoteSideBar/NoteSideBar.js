@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NotefulContext from '../NotefulContext';
 import history from '../history';
+
+import PropTypes from 'prop-types';
+import NotefulContext from '../NotefulContext';
 import './NoteSideBar.css';
 
 class NoteSideBar extends React.Component {
@@ -19,6 +21,22 @@ class NoteSideBar extends React.Component {
       </>
     )
   }
+}
+
+NoteSideBar.propTypes = {
+  context: PropTypes.shape({
+    notes: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      modified: PropTypes.string,
+      folderId: PropTypes.string,
+      content: PropTypes.string     
+    })),
+    folders: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string
+    }))
+  })
 }
 
 export default NoteSideBar;
