@@ -24,18 +24,10 @@ class NoteSideBar extends React.Component {
 }
 
 NoteSideBar.propTypes = {
-  context: PropTypes.shape({
-    notes: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      modified: PropTypes.string,
-      folderId: PropTypes.string,
-      content: PropTypes.string     
-    })),
-    folders: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string
-    }))
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      noteId: PropTypes.string.isRequired
+    })
   })
 }
 

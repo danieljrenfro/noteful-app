@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import NotefulContext from '../NotefulContext';
 import ValidationError from '../ValidationError/ValidationError';
-import PropTypes from 'prop-types';
 
 import './AddFolder.css';
 
@@ -106,12 +105,6 @@ class AddFolder extends Component {
       </>
     );
   }
-}
-
-AddFolder.propTypes = {
-  context: PropTypes.shape({
-    createFolder: PropTypes.func
-  })
 }
 
 export default AddFolder;

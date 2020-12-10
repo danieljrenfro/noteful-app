@@ -1,5 +1,4 @@
 import React from 'react';
-import history from './history';
 import NotefulContext from './NotefulContext';
 
 import Header from './Header/Header';

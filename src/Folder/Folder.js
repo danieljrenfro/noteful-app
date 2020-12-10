@@ -12,8 +12,8 @@ function Folder(props) {
 }
 
 Folder.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
 }
 
 export default Folder;

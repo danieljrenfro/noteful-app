@@ -110,7 +110,7 @@ class AddNote extends Component {
     const note = {
       id: uuidv4(),
       name: this.state.noteTitle.value,
-      modified: Date.now(),
+      modified: new Date(),
       folderId: this.state.noteFolderId.value,
       content: this.state.noteContent.value
     }

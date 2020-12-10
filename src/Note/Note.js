@@ -45,14 +45,11 @@ class Note extends Component {
 
 Note.propTypes = {
   note: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    modified: PropTypes.string,
-    folderId: PropTypes.string,
-    content: PropTypes.string
-  }),
-  context: PropTypes.shape({
-    deleteNote: PropTypes.func,
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    modified: PropTypes.string.isRequired,
+    folderId: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired
   })
 }
 

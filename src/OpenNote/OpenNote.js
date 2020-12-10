@@ -23,21 +23,10 @@ class OpenNote extends React.Component {
 }
 
 OpenNote.propTypes = {
-  note: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    modified: PropTypes.string,
-    folderId: PropTypes.string,
-    content: PropTypes.string
-  }),
-  context: PropTypes.shape({
-    notes: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      modified: PropTypes.string,
-      folderId: PropTypes.string,
-      content: PropTypes.string
-    }))
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      noteId: PropTypes.string.isRequired
+    })
   })
 };
 
