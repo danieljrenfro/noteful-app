@@ -6,7 +6,7 @@ import './Note.css';
 import NotefulContext from '../NotefulContext';
 
 function deleteNote(noteId, cb) {
-  fetch(`http://localhost:8000/api/notes/${noteId}`, {
+  fetch(`https://obscure-stream-85944.herokuapp.com/api/notes/${noteId}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json',

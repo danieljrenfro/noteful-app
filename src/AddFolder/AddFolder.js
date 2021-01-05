@@ -16,7 +16,7 @@ function postFolder(folder_name, cb) {
     })
   }
 
-  fetch('http://localhost:8000/api/folders', requestOptions)
+  fetch('https://obscure-stream-85944.herokuapp.com/api/folders', requestOptions)
   .then(response => {
     if (!response.ok) {
       throw new Error(`Received status ${response.status} and message: ${response.statusText}`)

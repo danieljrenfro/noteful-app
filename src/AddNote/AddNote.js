@@ -13,7 +13,7 @@ function postNote(note, cb) {
     body: JSON.stringify(note)
   };
 
-  fetch('http://localhost:8000/api/notes/', requestOptions)
+  fetch('https://obscure-stream-85944.herokuapp.com/api/notes/', requestOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Received status ${response.status} and message: "${response.statusText}"`)

@@ -31,7 +31,7 @@ class App extends React.Component {
   }
 
   getFolders = ()  => {
-    fetch('http://localhost:8000/api/folders')
+    fetch('https://obscure-stream-85944.herokuapp.com/api/folders')
       .then(res => {
         if (!res.ok) {
           throw new Error(res.status);
@@ -50,7 +50,7 @@ class App extends React.Component {
   }
 
   getNotes = () => {
-    fetch('http://localhost:8000/api/notes')
+    fetch('https://obscure-stream-85944.herokuapp.com/api/notes')
       .then(res => {
         if (!res.ok) {
           throw new Error(res.status)
