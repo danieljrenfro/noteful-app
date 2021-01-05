@@ -5,18 +5,18 @@ import ValidationError from '../ValidationError/ValidationError';
 
 import './AddFolder.css';
 
-function postFolder(name, cb) {
+function postFolder(folder_name, cb) {
   const id = uuidv4();
   const requestOptions = {
     method: 'POST',
     headers: {'content-type':'application/json'},
     body: JSON.stringify({
       id: id,
-      name: name
+      folder_name: folder_name
     })
   }
 
-  fetch('http://localhost:9090/folders', requestOptions)
+  fetch('http://localhost:8000/api/folders', requestOptions)
   .then(response => {
     if (!response.ok) {
       throw new Error(`Received status ${response.status} and message: ${response.statusText}`)

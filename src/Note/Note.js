@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import React, { Component } from 'react';
@@ -7,7 +6,7 @@ import './Note.css';
 import NotefulContext from '../NotefulContext';
 
 function deleteNote(noteId, cb) {
-  fetch(`http://localhost:9090/notes/${noteId}`, {
+  fetch(`http://localhost:8000/api/notes/${noteId}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json',
@@ -29,11 +28,11 @@ class Note extends Component {
   
   render() {
     const note = this.props.note;
-    const modifiedDate = format(new Date(note.modified), "MMM dd, yyyy HH:mm:ss");
+    const modifiedDate = new Date(note.date_modified).toLocaleString();
     
     return (
       <li className='note-item'>
-        <h2 className='note-title'><Link to={`/note/${note.id}`}>{note.name}</Link></h2>
+        <h2 className='note-title'><Link to={`/note/${note.id}`}>{note.note_name}</Link></h2>
         <div>
           <p>Date modified on {modifiedDate}</p>
           <button onClick={() => deleteNote(note.id, this.context.deleteNote(note.id))}>Delete</button>
@@ -45,10 +44,10 @@ class Note extends Component {
 
 Note.propTypes = {
   note: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    modified: PropTypes.string.isRequired,
-    folderId: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    note_name: PropTypes.string.isRequired,
+    date_modified: PropTypes.string.isRequired,
+    folder_id: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired
   })
 }

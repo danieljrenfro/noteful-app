@@ -6,14 +6,14 @@ import './Folder.css';
 function Folder(props) {
   return (
     <h2 className='folder-item'>
-      <NavLink to={`/folder/${props.id}`}>{props.name}</NavLink>
+      <NavLink to={`/folder/${props.id}`}>{props.folder_name}</NavLink>
     </h2>
   )
 }
 
 Folder.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
+  id: PropTypes.number.isRequired,
+  folder_name: PropTypes.string.isRequired
 }
 
 export default Folder;

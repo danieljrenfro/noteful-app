@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ValidationError from '../ValidationError/ValidationError';
 import NotefulContext from '../NotefulContext';
-import { v4 as uuidv4 } from 'uuid';
 
 import './AddNote.css';
 
@@ -14,7 +13,7 @@ function postNote(note, cb) {
     body: JSON.stringify(note)
   };
 
-  fetch('http://localhost:9090/notes', requestOptions)
+  fetch('http://localhost:8000/api/notes/', requestOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Received status ${response.status} and message: "${response.statusText}"`)
@@ -108,12 +107,12 @@ class AddNote extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const note = {
-      id: uuidv4(),
-      name: this.state.noteTitle.value,
-      modified: new Date(),
-      folderId: this.state.noteFolderId.value,
-      content: this.state.noteContent.value
+      note_name: this.state.noteTitle.value,
+      content: this.state.noteContent.value,
+      folder_id: parseInt(this.state.noteFolderId.value)
     }
+
+    console.log('note', note);
 
     postNote(note, this.context.createNote)
 
@@ -123,7 +122,7 @@ class AddNote extends Component {
   createFolderOptions() {
     const folderOptions = this.context.folders
       .map(folder => {
-      return (<option key={folder.id} value={folder.id}>{folder.name}</option>);
+      return (<option key={folder.id} value={folder.id}>{folder.folder_name}</option>);
       });
 
     return folderOptions;

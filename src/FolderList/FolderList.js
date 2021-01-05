@@ -19,7 +19,7 @@ class FolderList extends React.Component {
   
   render() {
     const folders = this.context.folders.map((folder) => {
-      return <FolderError key={folder.id}><Folder key={folder.id} id={folder.id} name={folder.name}/></FolderError>
+      return <FolderError key={folder.id}><Folder key={folder.id} id={folder.id} folder_name={folder.folder_name}/></FolderError>
     });
 
     return (

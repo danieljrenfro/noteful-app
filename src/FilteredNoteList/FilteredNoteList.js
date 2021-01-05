@@ -15,7 +15,7 @@ class FilteredNoteList extends React.Component {
 
     const filterId = this.props.match.params.folderId;
     const notes = this.context.notes
-      .filter(note => note.folderId === filterId)
+      .filter(note => note.folder_id === parseInt(filterId))
       .map(note => <NoteError key={note.id}><Note key={note.id} note={note}/></NoteError>);
     
       return (

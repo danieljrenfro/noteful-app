@@ -31,14 +31,14 @@ class App extends React.Component {
   }
 
   getFolders = ()  => {
-    fetch('http://localhost:9090/folders')
+    fetch('http://localhost:8000/api/folders')
       .then(res => {
         if (!res.ok) {
           throw new Error(res.status);
         }
         return res.json();
       })
-      .then(this.setFolders)
+      .then(folders => this.setFolders(folders))
       .catch(error => this.setState({ error }))
   }
 
@@ -50,14 +50,14 @@ class App extends React.Component {
   }
 
   getNotes = () => {
-    fetch('http://localhost:9090/notes')
+    fetch('http://localhost:8000/api/notes')
       .then(res => {
         if (!res.ok) {
           throw new Error(res.status)
         }
         return res.json();
       })
-      .then(this.setNotes)
+      .then(notes => this.setNotes(notes))
       .catch(error => this.setState({ error }))
   }
 

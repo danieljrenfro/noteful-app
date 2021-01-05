@@ -25,7 +25,7 @@ class OpenNote extends React.Component {
 OpenNote.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      noteId: PropTypes.string.isRequired
+      noteId: PropTypes.number.isRequired
     })
   })
 };
