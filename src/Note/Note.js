@@ -26,6 +26,13 @@ function deleteNote(noteId, cb) {
 class Note extends Component {
   static contextType = NotefulContext;
   
+  generateDeleteButton = (note) => {
+    if (this.props.isOpen) {
+      return <button onClick={() => deleteNote(note.id, this.context.deleteNoteBack)}>Delete</button>
+    }
+    return <button onClick={() => deleteNote(note.id, this.context.deleteNote)}>Delete</button>
+  }
+
   render() {
     const note = this.props.note;
     const modifiedDate = new Date(note.date_modified).toLocaleString();
@@ -35,7 +42,7 @@ class Note extends Component {
         <h2 className='note-title'><Link to={`/note/${note.id}`}>{note.note_name}</Link></h2>
         <div>
           <p>Date modified on {modifiedDate}</p>
-          <button onClick={() => deleteNote(note.id, this.context.deleteNote(note.id))}>Delete</button>
+          {this.generateDeleteButton(note)}
         </div>
       </li>
     )

@@ -1,6 +1,7 @@
 import React from 'react';
 import NotefulContext from './NotefulContext';
 
+import history from './history';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import NoteList from './NoteList/NoteList';
@@ -68,6 +69,19 @@ class App extends React.Component {
     })
   }
 
+  deleteNoteBack = (noteId) => {
+    const currentNote = this.state.notes.find(note => note.id === noteId);
+    const currentFolderId = currentNote.id;
+    
+    history.push(`/folder/${currentFolderId}`);
+    
+    const newNotes = this.state.notes.filter(note => note.id !== noteId);
+
+    this.setState({
+      notes: newNotes
+    })
+  }
+
   createFolder = (folder) => {
     this.setState({
       folders: [...this.state.folders, folder]
@@ -90,6 +104,7 @@ class App extends React.Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.deleteNote,
+      deleteNoteBack: this.deleteNoteBack,
       createFolder: this.createFolder,
       createNote: this.createNote
     }

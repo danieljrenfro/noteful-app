@@ -10,7 +10,9 @@ import './NoteList.css'
   
    render() {
     const notes = this.context.notes.map((note) => {
-      return <NoteError key={note.id}><Note key={note.id} note={note}/></NoteError>
+      return <NoteError key={note.id}>
+          <Note key={note.id} isOpen={false}  note={note}/>
+        </NoteError>
     })
 
     return (

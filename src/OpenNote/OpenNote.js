@@ -9,11 +9,13 @@ class OpenNote extends React.Component {
   static contextType = NotefulContext;
 
   render() {
-    const note = this.context.notes.find(note => note.id === this.props.match.params.noteId);
+    const noteId = parseInt(this.props.match.params.noteId);
+
+    const note = this.context.notes.find(note => note.id === noteId);
     
     return (
       <>
-        <Note key={note.id} note={note}/>
+        <Note key={note.id} isOpen={true} note={note}/>
         <div>
           {note.content}
         </div>
@@ -25,7 +27,7 @@ class OpenNote extends React.Component {
 OpenNote.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      noteId: PropTypes.number.isRequired
+      noteId: PropTypes.string.isRequired
     })
   })
 };

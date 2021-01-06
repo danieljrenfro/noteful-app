@@ -11,13 +11,14 @@ class NoteSideBar extends React.Component {
   static contextType = NotefulContext;
   
   render() {
-    const note = this.context.notes.find(note => note.id === this.props.match.params.noteId);
-    const folder = this.context.folders.find(folder => folder.id === note.folderId); 
+    const noteId = parseInt(this.props.match.params.noteId);
+    const note = this.context.notes.find(note => note.id === noteId);
+    const folder = this.context.folders.find(folder => folder.id === note.folder_id); 
 
     return (
       <>
         <button onClick={history.goBack}>Go Back</button>
-        <h2><Link to={`/folder/${folder.id}`}>{folder.name}</Link></h2>
+        <h2><Link to={`/folder/${folder.id}`}>{folder.folder_name}</Link></h2>
       </>
     )
   }
